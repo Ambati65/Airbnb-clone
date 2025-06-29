@@ -30,9 +30,10 @@ const listingRouter=require('./routes/listingRoutes.js');
 const reviewRouter=require('./routes/reviewRoutes.js');
 const userRouter=require('./routes/userRoutes.js');
 
-const dburl=process.env.AtlasUrl;
+//const dburl=process.env.AtlasUrl;
+const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust"
 async function main(){
-    await mongoose.connect(dburl);
+    await mongoose.connect(MONGO_URL);
 }
 
 main().then(()=>{console.log("success!")}).catch((err)=>{console.log(err)});
@@ -42,7 +43,8 @@ app.listen(port,()=>{
 });
 
 const store = MongoStore.create({
-  mongoUrl: dburl,
+  //mongoUrl: dburl,
+  mongoUrl:MONGO_URL,
   crypto: {
     secret: process.env.SECRET,
   },
